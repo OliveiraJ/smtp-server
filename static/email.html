@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send an E-mail</title>
+</head>
+<body>
+    <div id="main">
+    <h3 id="title">Send an E-mail</h3>
+    <form action="" method="post">
+        <label for="from">From:</label><br>
+        <input type="email" name="from" id="from" placeholder="Email@email.com" class="form"><br>
+        <label for="to">To:</label><br>
+        <input type="email" name="to" id="to" placeholder="Email@email.com" class="form"><br>
+        <label for="subject">Subject:</label><br>
+        <input type="text" name="subject" id="subject" class="form" placeholder="Type a subject"><br>
+        <label for="message">Message:</label><br>
+        <textarea name="message" id="message" cols="70" rows="10" class="form" placeholder="Write your message here!"></textarea>
+        <br>
+        <br>
+        <input type="submit" value="Send" id="button"><br>
+
+    </form>
+    </div>
+    
+</body>
+<style>
+    div{
+        padding-top: 10px;
+        margin: auto;
+        width: 50%;
+        box-shadow: 1px 2px 2px gray;
+        border-radius: 10px;
+        border: 1px solid gray;
+        padding-left: 30px;
+    }
+    .form{
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding-left: 7px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border: 1px solid;
+        box-shadow: 1px 1px 1px gray;
+        background-color: rgb(243, 241, 241);
+    }
+    #title{
+        text-align: center;
+        font-family: monospace;
+    }
+    #button{
+        width: 60px;
+        height: 30px;
+        margin-bottom: 25px;
+        align-self: center;
+        font-family: monospace;
+        font-weight: bold;
+        box-shadow: 1px 1px 1px gray;
+        border-radius: 5px
+    }
+    label{
+        font-family:monospace;
+        font-weight: bold;
+    }
+    textarea{
+        width: 80%;
+    }
+</style>
+</html>
