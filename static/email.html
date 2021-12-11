@@ -7,25 +7,30 @@
     <title>Send an E-mail</title>
 </head>
 <body>
-    <div id="main">
+    {{if .Success}}
+        <h1>Seu email foi enviado</h1>
+    {{else}}
+    <div id="container">
     <h3 id="title">Send an E-mail</h3>
+
     <form action="" method="post">
         <label for="from">From:</label><br>
         <input type="email" name="from" id="from" placeholder="Email@email.com" class="form"><br>
         <label for="to">To:</label><br>
-        <input type="email" name="to" id="to" placeholder="Email@email.com" class="form"><br>
+        <input type="text" name="to" id="to" placeholder="Email@email.com" class="form"><br>
         <label for="subject">Subject:</label><br>
         <input type="text" name="subject" id="subject" class="form" placeholder="Type a subject"><br>
         <label for="message">Message:</label><br>
         <textarea name="message" id="message" cols="70" rows="10" class="form" placeholder="Write your message here!"></textarea>
         <br>
         <br>
-        <input type="submit" value="Send" id="button"><br>
+        <input type="submit" value="Send" id="button" ><br>
 
     </form>
     </div>
-    
+    {{end}}
 </body>
+
 <style>
     div{
         padding-top: 10px;
@@ -35,6 +40,7 @@
         border-radius: 10px;
         border: 1px solid gray;
         padding-left: 30px;
+        background-color: rgb(252, 252, 252);
     }
     .form{
         margin-top: 5px;
@@ -67,6 +73,9 @@
     }
     textarea{
         width: 80%;
+    }
+    body{
+        background-color: rgb(131, 0, 253);
     }
 </style>
 </html>

@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -15,17 +16,25 @@ type Input struct {
 	Message string   `json:"message"`
 }
 
-func Mail(res http.ResponseWriter, req *http.Request) {
-	formIn := &Input{}
-	req.ParseForm()
-	formIn.From = req.Form.Get("from")
-	formIn.To = append(formIn.To, req.Form.Get("To"))
-	formIn.Subject = req.Form.Get("subject")
-	formIn.Message = req.Form.Get("message")
+type User struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
 
+func Mail(res http.ResponseWriter, req *http.Request) {
+	tmp := template.Must(template.ParseFiles("static/email.html"))
+
+	formIn := Input{
+		From:    req.FormValue("from"),
+		Subject: req.FormValue("subject"),
+		Message: req.FormValue("message"),
+		To:      strings.Split(req.FormValue("to"), ","),
+	}
+
+	log.Println(formIn)
+	SendEmail(formIn)
 	res.Header().Set("Content-Type", "html")
-	tmp, _ := template.ParseFiles("static/email.html")
-	tmp.Execute(res, nil)
+	tmp.Execute(res, struct{ Success bool }{false})
 
 }
 
