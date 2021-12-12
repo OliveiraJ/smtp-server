@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing</title>
+</head>
+<body>
+   
+    <div id="container">
+    {{if .}}
+    <h1 id="title">Success!</h1>
+    {{else}}
+    <h1 id="title">Something bad happened, we are sorry for the inconvenience.</h1>
+    {{end}}
+    
+    <form action="/sendmail" method="POST">
+        <input type="submit" value="Go back" id="button"><br>
+    </form>
+    </div>
+
+</body>
+
+<style>
+    div{
+        margin: auto;
+        margin-top: 10%;
+        width: 30%;
+        box-shadow: 1px 2px 2px gray;
+        border-radius: 10px;
+        border: 1px solid gray;
+        background-color: rgb(252, 252, 252);
+    }
+    .form{
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding-left: 7px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border: 1px solid;
+        box-shadow: 1px 1px 1px gray;
+        background-color: rgb(243, 241, 241);
+    }
+    #title{
+        text-align: center;
+        font-family: monospace;
+    }
+    #button{
+        width: 100px;
+        height: 30px;
+        margin: auto;
+        align-self: center;
+        font-family: monospace;
+        font-weight: bold;
+        box-shadow: 1px 1px 1px gray;
+        border-radius: 5px
+    }
+    label{
+        font-family:monospace;
+        font-weight: bold;
+    }
+    textarea{
+        width: 80%;
+    }
+    body{
+        background-color: rgb(131, 0, 253);
+    }
+</style>
+</html>
