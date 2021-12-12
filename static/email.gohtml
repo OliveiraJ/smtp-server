@@ -7,15 +7,11 @@
     <title>Send an E-mail</title>
 </head>
 <body>
-    {{if .Success}}
-        <h1>Seu email foi enviado</h1>
-    {{else}}
     <div id="container">
-    <h3 id="title">Send an E-mail</h3>
+    <h3 class="title">Send an E-mail</h3>
 
-    <form action="" method="post">
-        <label for="from">From:</label><br>
-        <input type="email" name="from" id="from" placeholder="Email@email.com" class="form"><br>
+    <form action="/processing" method="post">
+        <label for="from">From: {{.Email}}</label><br>
         <label for="to">To:</label><br>
         <input type="text" name="to" id="to" placeholder="Email@email.com" class="form"><br>
         <label for="subject">Subject:</label><br>
@@ -28,13 +24,14 @@
 
     </form>
     </div>
-    {{end}}
+
 </body>
 
 <style>
     div{
         padding-top: 10px;
         margin: auto;
+        margin-top: 5%;
         width: 50%;
         box-shadow: 1px 2px 2px gray;
         border-radius: 10px;
@@ -53,7 +50,7 @@
         box-shadow: 1px 1px 1px gray;
         background-color: rgb(243, 241, 241);
     }
-    #title{
+    .title{
         text-align: center;
         font-family: monospace;
     }
