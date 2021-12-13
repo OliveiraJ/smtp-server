@@ -1,6 +1,7 @@
 package server
 
 import (
+	"embed"
 	"html/template"
 	"log"
 	"net/http"
@@ -20,14 +21,18 @@ type User struct {
 	Password string `json:"password"`
 }
 
+//go:embed static/*
+var F embed.FS
 var tpl *template.Template
 var user User
 
-func init() {
-	tpl = template.Must(template.ParseGlob("static/*.gohtml"))
+func Init() {
+	tpl = template.Must(template.ParseFS(F, "static/*.gohtml"))
+	//tpl = template.Must(template.ParseGlob("static/*.gohtml"))
 }
 
 func Login(res http.ResponseWriter, req *http.Request) {
+	Init()
 	tpl.ExecuteTemplate(res, "login.gohtml", nil)
 
 }
@@ -38,15 +43,21 @@ func Mail(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	res.Header().Set("Content-Type", "html")
+	if req.FormValue("username") != "" && req.FormValue("password") != "" {
+		user.Email = req.FormValue("username")
+		user.Password = req.FormValue("password")
 
-	user.Email = req.FormValue("username")
-	user.Password = req.FormValue("password")
+	}
 
-	tpl.ExecuteTemplate(res, "email.gohtml", user)
+	tpl.ExecuteTemplate(res, "sendemail.gohtml", user)
 
 }
 
 func process(res http.ResponseWriter, req *http.Request) {
+	if req.Method != "POST" {
+		http.Redirect(res, req, "/", http.StatusSeeOther)
+		return
+	}
 	formIn := Input{
 		Subject: req.FormValue("subject"),
 		Message: req.FormValue("message"),
@@ -56,7 +67,7 @@ func process(res http.ResponseWriter, req *http.Request) {
 	log.Println(formIn)
 
 	Isdone := SendEmail(formIn, user)
-	//data := []interface{}{Isdone, user}
+
 	tpl.ExecuteTemplate(res, "processor.gohtml", Isdone)
 }
 
