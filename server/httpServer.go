@@ -63,6 +63,7 @@ func process(res http.ResponseWriter, req *http.Request) {
 		Message: req.FormValue("message"),
 		To:      strings.Split(req.FormValue("to"), ","),
 	}
+	log.Println(user)
 	log.Println(formIn)
 
 	Isdone := SendEmail(formIn, user)
