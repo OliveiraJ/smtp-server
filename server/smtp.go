@@ -5,6 +5,7 @@ import (
 	"net/smtp"
 )
 
+// Cria, autentica e envia o email por meio do protocolo SMTP
 func SendEmail(formIn Input, user User) bool {
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
